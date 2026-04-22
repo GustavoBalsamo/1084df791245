@@ -1,1 +1,19 @@
-(function(){var u=navigator.userAgent||navigator.vendor||'';if(!/FBAN|FBAV|Instagram|Messenger/i.test(u))return;var url=window.location.href;if(/Android/i.test(u)){try{window.location.href='googlechrome://navigate?url='+encodeURIComponent(url);}catch(e){}setTimeout(function(){var clean=url.replace(/^https?:\/\//i,'');window.location.href='intent://'+clean+'#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(url)+';end';},100);}else if(/iPhone|iPad|iPod/i.test(u)){var overlay=document.createElement('div');overlay.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:-apple-system,sans-serif;text-align:center;padding:20px;box-sizing:border-box;';overlay.innerHTML='<div style="font-size:22px;font-weight:bold;margin-bottom:16px;">Abrir no Safari</div><div style="font-size:16px;line-height:1.5;margin-bottom:24px;">Toque nos <b>3 pontinhos ...</b> no canto inferior direito e depois em <b>"Abrir no Safari"</b></div><div style="font-size:40px;">⬇️</div>';document.body.appendChild(overlay);}})();
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  if(params.get('ext')!=='1')return;
+  var u=navigator.userAgent||navigator.vendor||'';
+  if(!/FBAN|FBAV|Instagram|Messenger/i.test(u))return;
+  var url=window.location.href;
+  if(/Android/i.test(u)){
+    try{window.location.href='googlechrome://navigate?url='+encodeURIComponent(url);}catch(e){}
+    setTimeout(function(){
+      var clean=url.replace(/^https?:\/\//i,'');
+      window.location.href='intent://'+clean+'#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(url)+';end';
+    },100);
+  }else if(/iPhone|iPad|iPod/i.test(u)){
+    var overlay=document.createElement('div');
+    overlay.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-family:-apple-system,sans-serif;text-align:center;padding:20px;box-sizing:border-box;';
+    overlay.innerHTML='<div style="font-size:22px;font-weight:bold;margin-bottom:16px;">Abrir no Safari</div><div style="font-size:16px;line-height:1.5;margin-bottom:24px;">Toque nos <b>3 pontinhos ...</b> no canto inferior direito e depois em <b>"Abrir no Safari"</b></div><div style="font-size:40px;">⬇️</div>';
+    document.body.appendChild(overlay);
+  }
+})();
